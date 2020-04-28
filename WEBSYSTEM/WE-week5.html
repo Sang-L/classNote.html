@@ -1,0 +1,147 @@
+<! docytype html>
+
+
+
+<html>
+<head>
+<h1>웹시스템 5주차 강의 노트</h1>
+</head>
+
+<body>
+  <strong>유사도와 비유사도</strong><br>
+  유사도similarity : 두 데이터의 비슷한 정도를 수치적인 척도로 나타낸 것. 유사할수록 큰 값을 가짐 [0,1]사이의 값을 가짐.<br>
+  비유사도dissimilayrity : 두 데이터의 상이한 정도를 수치적인 척도로 나타낸 것. 유사할수록 작은 값을 가짐. 0에 가까움. 대표적 비 유사도는 거리(distance)가 있다.<br><br>
+
+  <strong>Distance</strong><br>
+  dist(p,q) : m개의 성분을 가진 두 벡터 p,q간의 거리.<br><br>
+  <strong>1)Minkowski distance</strong><br>
+  -유클리디언거리(L2 norm)<br>
+  -맨하튼거리(L2 norm)<br>
+  -L infinity norm 거리<br>
+  2)Cosine distance<br><br>
+  <strong>3)Mahalnobis distance</strong><br>
+
+  --1)Euclidian distance<br>
+  --2)Minkowski distance<br><br>
+  r = 2인 경우 Euclidian distance(L2)<br>
+  r = 1인 경우 Manhattan distance(L1)<br>
+  r -> infinity 인 경우 supermum distance e두 벡터의 성분 차이 중에서 가장 큰 값이max(pk - qk)( L infinity norm에 해당<br><br>
+
+  --3) Consine distance<br>
+  cosine distance = 1-cos(p,q)<br>
+  cos(p,q) --> ????(공업수학찾아보기)<br><br>
+
+  --4)Mahalanobis distance<br>
+  m개의 속성을 가진 n개의 데이터 x를 고려한 두 벡터 p,q간의 거리.<br>
+  (p,q간의 거리라고 하는 것은 두 벡터가 관련있는 데이터집합 x를 고려한 거리...)<br>
+  계산하는 법도 알아야 하지만 그 의미가 더 중요<br><br>
+  Mahalanobis distance의 의미<br>
+  --> 데이터 사이의 correlation(공분산 cov)을 고려한 거리<br>
+  --> 임의의 데이터가 어느 집합에 있는지 결정하는데 사용.<br>
+  --> 시그마 = 1인 경우 Euclidian distance<br>
+  --> 시그마가 대각행렬인 경우 정규화 된 Euclidain distance(정규화공식. 더 간단)<br>
+  그림을 보면 두 빨간 점 사이의 거리가 유클리디언거리로 계산하면 14.7, 마할라노비스거리로 계산하면 6인데, 그 이유는 마할로노비스거리는 데이터사이의 관계들을 고려하기때문.(두 빨간 점사이의 수많은 점들)<br>
+  다음 그림을 보면 세 점 A,B,C의 거리를 계산했는데 AB와 AC의 거리를 자세히 보면 마할라노비스거리의 의미를 이해할 수 있다.<br>
+
+  거리의 공통적인 성질<br>
+  1)거리는 항상 0보다 크거나 같다(p=q일때 0이다) -> Positvie definiteness<br>
+  2)p,q 간의 거리나 q,p간의 거리는 똑같다(Symetry)<br>
+  3)d(p,r) <= (p,q) + (q,r) -> Triangle inequality -->> 삼각형의 성질..<br>
+  <strong>--->>★ 이 세가지 성질을 만족하는 distance 를 metric이라고 부름!!!★</strong><br><br>
+
+  <strong>유사도/비유사도</strong><br>
+
+  m개의 성분을 가진 두 벡터 p,q사이의 유사도/비유사도<br>
+  속성이 binary한 값을 가지는 경우 -> Simple matching coefficient, Jaccard Coefiiecient<br>
+  속성이 연속적인 값을 가지는 경우 -><br>
+  Extended Jaccard Coefficient, Cosine Similarity<br><br>
+
+  Similarity Between Binary Vectors<br>
+  M01 -> p = 0, q= 1<br>
+  M10~~<br>
+  M00~~<br>
+  M11~~<br>
+  m = M01 + M10 + M00 + M11 (m은 속성의 개수)<br>
+  <strong>1)SMC(simple matching cofficient)</strong> = (M11 + M00) /  (M01 + M10 + M11 + M00) <br><br>
+
+  <strong>2)Jaccard Coefficients</strong><br>
+  J = (M11) / (M01 + M10 + M11) --> M00를 포함시키지 않음 여기서 M00은 무슨의미냐?<br>
+  M00 ===>> 그림에서 봐야하는데 음.. A도 속하지 않고 B에도 속하지 않는다는의미. <br><br>
+
+  <strong>3)Extended Jaccard Coefficient(Tanimoto)</strong><br>
+  ※p,q가 0 or 1일 때 extended jaccard coffi 로 되는지 한번 해보기.<br><br>
+
+  <strong>4)Cosine Similarity</strong><br>
+  (0,1)사이의 값을 가짐<br><br>
+
+  4가지 유사도의 공통 속성<br>
+  1)p=q 일 떄 s(p,q) = 1이 된다.(최고값인 1)<br>
+  2) s(p,q) = s(q,p) --> symmetry<br><br><br>
+
+  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+  <strong>★클러스터링★</strong><br>
+  거리에 기초한 알고리즘을 주로 사용할 것.<br>
+  -1)Partitional Clustering<br>
+  -2)Hierarchical Clustering<br><br>
+
+  What is Cluster Analysis??<br>
+  ->데이터들이 속한 그룹(cluster)을 찾는것<br>
+  대표적인 사례 > 학기가 끝나고 성적을 내는 것. <br>
+  가장 큰 특징은 각 cluster에 대한 사전 지식이 없는 상태에서 데이터를 분류 한다는 것 -> unsupervidsed learning(비지도학습)<br>
+  ex)학생들의 성적으로 점수를 내야하는데 어느 범위에서 A,B,C를 줄지. 정해지지 않은 상태. 그 상태에서 데이터를 분류하는 작업.. 그래서 어려움<br>
+  ->분류 기준 : 같은 그룹에 속한 데이터들은 다른 그룹에 속한 데이터에 비하여 상대적으로 더 유사함.(A를 받아야 할 점수들이 B를 받는 사람들보다 더 유사할 것) <br>
+  -> 다음 페이지 그림을 보면 된다. 같은 그룹 간 데이터의 거리가 다른 그룹과의 데이터보다 더 가까움 -> 클러스터링이 그래서 어려움....매우...<br><br>
+
+  클러스터링의 용도<br>
+  이해Understanding<br>
+  요약Summaization<br><br>
+
+  클러스터링 방법<br>
+  <strong>1)Model-based algorithms</strong><br>
+  ->대부분 통계적 모형 사용<br>
+  ex)Finite mixture model, Functional clustering analysis<br>
+  --->좀 어려움.<br><br>
+  ★2)Distance-based algorithms★<br>
+  ->데이터 간 유사도/비유사도 사용(주어진 데이터 사이의 유사도/비유사도를 측정해야 함)<br>
+  ex)Partitional clustering, Hierarchical clustering<br>
+  --->비교적 쉬운 방법<br><br>
+  3)Bayesian non-parametric method : <br>
+  <strong>앞의 2개의 방법들은 몇개의 클러스트로 구분 할 것인가가 필요함(우리가 클러스트개수를 인위적으로 정함) 그러나 이 방법은 데이터 자체가 클러스트 개수를 자체적으로 정해줌.<br>
+   --> 굉장히 어려움...계산도 어렵고.. 그래서 널리 사용 못함... 계산 기술이 개발이 된다면 앞으로 가능성다분... ★우리 수업땐안함★</strong><br><br>
+
+  Model-based alg<br>
+  -)Finite mixture model<br>
+  정규분포 + 라플라스분포 ( 두 유한한 확률의 결합)<br>
+  EM알고리즘을 사용.<br><br>
+
+  <strong>★Distance-based clustering★</strong><br>
+  1)Partitional clustering<br>
+  ->데이터를 중복되지 않도록 cluster(ex 학점) : 평면적 클러스터링<br>
+  -> 분류할 클러스터의 개수를 미리 정함(학점을 A,B 두 가지로 할 것인지 A,B,C 세 가지로 할 것인지) <br>
+  -> 같은 데이터는 두 가지 이상의 그룹에 속하지 않음 (ex K-mean 알고리즘, Bisecting K-means)<br><br>
+
+  <strong>2)Hierarchical clustering</strong><br>
+  ->클러스터 간 계층이 존재<br>
+  ->클러스터를 hierarchical tree(뒤 그림의 Dendrogram->높낮이가 존재)의 원소로 표현<br>
+  <strong>->동일한 데이터가 두 가지 이상의 그룹에 속할 수 있음</strong><br>
+  <strong>->ex: Single-linkage, Complete-linkage, Average-linkage, Ward's method, Method based on MST</strong><br><br>
+
+  <strong>★두 모델의 그림을 볼 것. 보면서 차이점을 파악. (큰 차이가 하나 있지? 위에 굵은글씨로 표시한 거!!!)★</strong><br><br>
+
+  <strong>1)K-means Clustering</strong><br>
+  n 개의 데이터를 k개의 클러스터로 분류(k는 미리 정함)<br>
+  centroid : 각 cluster의 중심점<br>
+  <strong>-> 데이터를 가장 가까운 centroid 가 속한 cluster에 할당</strong><br>
+  -> 계산적으로 매우 어려움.<br>
+   --)np-hard문제<br>
+   --)휴리스틱스를 사용. 정확한 해를 구하긴 어렵고 지역최적해를 구해야 함.<br>
+  ->centroid : 클러스터에 속한 점들의 평균좌표<br>
+  ->cluster의 개수가 정해지면 초기에는 임의로  centroid 임의로 선택 --> 계속 업데이트!!<br>
+  ->centroid와 데이터 사이의 근접도 : 유사도 척도 사용(유클리디언거리,코사인유사도 등등)<br>
+  k-means clusters를 사용하는 방법<br>
+  -->계산 과정이므로 인강 참조.<br>
+
+
+</body>
+</html>
